@@ -1,6 +1,6 @@
 /*
- * KAKAO System Planowania Wysy�ek
- * by Pawe� Pikus, Tomasz Pud�o
+ * KAKAO System Planowania Wysylek
+ * by Pawel Pikus, Tomasz Pudlo
  */
 package kakao;
 
@@ -17,6 +17,8 @@ public class Kakao {
     public static void main(String[] args) throws Exception {
         String sUrlString = "jdbc:sqlite:Cocoa.db";
         KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC",sUrlString);
+        ReadCSV obj = new ReadCSV();
+	obj.run();
         
     }
     
