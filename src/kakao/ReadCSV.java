@@ -18,7 +18,7 @@ import java.util.Map;
 public class ReadCSV {
     
     public void run(){
-        String csvFile = "GeoIPCountryWhois.csv";
+        String csvFile = "data1.csv";
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
@@ -28,14 +28,15 @@ public class ReadCSV {
             br = new BufferedReader (new FileReader(csvFile));
             while ((line = br.readLine())!=null) {
                 //use comma as separator
-                String [] country = line.split(csvSplitBy);
-                maps.put(country[4], country[5]);
+                String [] data = line.split(csvSplitBy);
+                maps.put(data[2], data[3]);
+                
             }
             
             //loop map
             
             for (Map.Entry<String, String> entry : maps.entrySet()) {
-                System.out.println("Country [code= " + entry.getKey() + " , name= " 
+                System.out.println("Artykul [Art No = " + entry.getKey() + " , Description = " 
                         + entry.getValue() + "]");
                 
             }
