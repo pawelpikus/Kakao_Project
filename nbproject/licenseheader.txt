@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}KAKAO System Planowania Wysy³ek
+${licensePrefix}by Pawe³ Pikus, Tomasz Pud³o
+<#if licenseLast??>
+${licenseLast}
+</#if>
