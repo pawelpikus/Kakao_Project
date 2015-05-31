@@ -1,6 +1,6 @@
 /*
- * KAKAO System Planowania Wysy�ek
- * by Pawe� Pikus, Tomasz Pud�o
+ * KAKAO System Planowania Wysylek
+ * by Pawel Pikus, Tomasz Pudlo
  */
 package kakao;
 import java.sql.Connection;
