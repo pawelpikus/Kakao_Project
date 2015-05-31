@@ -6,7 +6,8 @@ package kakao;
 
 /**
  *
- * @author Lusiotron2015
+ * example of concrete class extending Sqlite abstract class 
+ * (does nothing but connecting to Coca.db) 
  */
 public class KakaoDb extends Sqlite {
     
