@@ -1,4 +1,3 @@
-STATUS,Order,Art No,Description,Rcv,Rcv Type,RcvCty,SL,Act Order,Plan Date,TotOrd,TotBal,TotDsp,TotBook,Orig Date,L,T,Rcvd Date,Tot Csm Qty,Order2,Transit,STMS,StockAvailDate
 Conf,2401725484,10245337,LEKMAN mini chst/2 drw 33x25 red,318,STO,IL,4,N,12-Sep-2014,56,56,0,0,12-Sep-2014,1,B,02-Sep-2014,0,,N,N,
 Conf,2401727130,40177233,TURBO clothes rack 117x59 black,206,STO,IL,3,N,16-Sep-2014,15,15,0,0,16-Sep-2014,1,J,03-Sep-2014,0,,N,N,
 Conf,2401730926,40177233,TURBO clothes rack 117x59 black,1,DT,SE,2,N,29-Sep-2014,435,0,0,435,29-Sep-2014,1,J,06-Sep-2014,435,,N,N,
