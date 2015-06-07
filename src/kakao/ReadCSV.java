@@ -24,6 +24,7 @@ public class ReadCSV {
         String csvSplitBy = ",";
         
         try {
+            
             Map<String, String> maps = new HashMap<String, String>();
             br = new BufferedReader (new FileReader(csvFile));
             while ((line = br.readLine())!=null) {
