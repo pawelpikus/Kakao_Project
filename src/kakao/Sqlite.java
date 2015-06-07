@@ -16,7 +16,7 @@ abstract class Sqlite {
     public String sDriver ="";
     public String sUrl = null;
     public int iTimeout = 30;
-    public Connection conn = null;
+    public static Connection conn = null;
     public Statement statement =null;
     
     public Sqlite ()
