@@ -22,7 +22,7 @@ public class ReadCSV {
    
     public static String csvFile = "data1.csv";
     
-    public void czysc_tabele (String nazwa_tabeli) throws SQLException, ClassNotFoundException
+    public static void czysc_tabele (String nazwa_tabeli) throws SQLException, ClassNotFoundException
         {
         // czyscimy zawartosc tabeli
             PreparedStatement czysc = conn.prepareStatement("delete from " + nazwa_tabeli + ";");

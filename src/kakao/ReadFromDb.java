@@ -55,6 +55,8 @@ public class ReadFromDb {
             for (int n = 0; n < nazwy_kolumn.length; n++)
             {
                 tablica[r][c] = rs.getString(nazwy_kolumn[n]);
+                if (tablica[r][c] == null)
+                {tablica[r][c] = "1";}
                 c++;
             }
             r++;
@@ -63,7 +65,7 @@ public class ReadFromDb {
         rs.close();
         conn.close();
         
-        
+        /*
         // tak mozna wyświetlić otrzymaną tabelę
         
         for (int i=0; i < w; i++)
@@ -74,6 +76,6 @@ public class ReadFromDb {
             }
             System.out.println();
         }
-        
+        */
         }
 }
