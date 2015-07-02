@@ -22,8 +22,8 @@ public class Kakao {
         String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
         KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
         ReadCSV obj = new ReadCSV();
-        //obj.czysc_tabele("Kraje");
-	//obj.uzupelnij_tabele(6, 6, "Kraje");
+        obj.czysc_tabele("Kraje");
+	obj.uzupelnij_tabele(6, 6, "Kraje");
         obj.czysc_tabele("Artykuly");
         obj.uzupelnij_tabele(2, 3, "Artykuly (numer_artykulu, nazwa_artykulu)");
         

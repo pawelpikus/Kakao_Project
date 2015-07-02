@@ -20,6 +20,8 @@ import static kakao.Sqlite.conn;
  */
 public class ReadCSV {
    
+    public static String csvFile = "data1.csv";
+    
     public void czysc_tabele (String nazwa_tabeli) throws SQLException, ClassNotFoundException
         {
         // czyscimy zawartosc tabeli
@@ -30,7 +32,6 @@ public class ReadCSV {
     
     
     public void uzupelnij_tabele(int numer_kolumny_klucza, int numer_kolumny_wartosci, String nazwa_tabeli) throws SQLException, ClassNotFoundException{
-        String csvFile = "data1.csv";
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
