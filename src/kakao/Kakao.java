@@ -27,18 +27,15 @@ public class Kakao {
         obj.czysc_tabele("Artykuly");
         obj.uzupelnij_tabele(2, 3, "Artykuly (numer_artykulu, nazwa_artykulu)");
         
-        /*
-        JFrame ramka_glowna = new JFrame("Projekt Kakao v0.1");
-        ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ramka_glowna.setSize(400, 400);
-        ramka_glowna.pack();
-        ramka_glowna.setVisible(true);
-        */
-        
         ReadFromDb odczyt = new ReadFromDb();
         String[] nazwy_kolumn_artykuly = {"numer_artykulu", "nazwa_artykulu", "ilosc_paletowa"};
         odczyt.pelny_odczyt("Artykuly", 3, nazwy_kolumn_artykuly);
         
+        NewJFrame ramka_glowna = new NewJFrame();
+        ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ramka_glowna.setSize(400, 400);
+        ramka_glowna.pack();
+        ramka_glowna.setVisible(true);
         
         
     }       
