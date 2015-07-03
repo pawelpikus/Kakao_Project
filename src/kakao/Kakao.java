@@ -19,10 +19,10 @@ public class Kakao {
      */
     public static void main(String[] args) throws Exception {
         
-        String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
-        KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
-        
-        ReadCSV obj = new ReadCSV();
+       String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
+       KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
+       kakaoDb.getConnection();
+        //ReadCSV obj = new ReadCSV();
         
         
         //obj.czysc_tabele("Kraje");
