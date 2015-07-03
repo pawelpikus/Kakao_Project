@@ -21,7 +21,9 @@ public class Kakao {
         
         String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
         KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
+        
         ReadCSV obj = new ReadCSV();
+        
         
         //obj.czysc_tabele("Kraje");
 	//obj.uzupelnij_tabele(6, 6, "Kraje");
@@ -32,11 +34,14 @@ public class Kakao {
         String[] nazwy_kolumn_artykuly = {"numer_artykulu", "nazwa_artykulu", "ilosc_paletowa"};
         odczyt.pelny_odczyt("Artykuly", 3, nazwy_kolumn_artykuly);
         
-        NewJFrame ramka_glowna = new NewJFrame();
-        ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ramka_glowna.setSize(400, 400);
-        ramka_glowna.pack();
-        ramka_glowna.setVisible(true);
+        //formatka z logowaniem
+        LoginPage loginPage = new LoginPage();
+        loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginPage.setSize(400,400);
+        loginPage.pack();
+        loginPage.setVisible(true);
+        
+        
         
         
     }       
