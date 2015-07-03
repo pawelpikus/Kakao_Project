@@ -126,7 +126,7 @@ public class LoginPage extends javax.swing.JFrame {
             if (validate_login(user, pwd)) {
                 JOptionPane.showMessageDialog(null, "Logowanie udane!");
                 setVisible(false);
-                
+                //ładuje główny widok
                 NewJFrame ramka_glowna = new NewJFrame();
                 ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ramka_glowna.setSize(400, 400);
@@ -134,7 +134,7 @@ public class LoginPage extends javax.swing.JFrame {
                 ramka_glowna.setVisible(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Niepoprawna nazwa użytkownika lub hasła!");
+                JOptionPane.showMessageDialog(null, "Niepoprawna nazwa użytkownika lub hasło!");
             }
         }
 

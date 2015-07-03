@@ -4,15 +4,11 @@
  */
 package kakao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import static kakao.Sqlite.conn;
-import kakao.KakaoDb;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -20,9 +16,7 @@ import kakao.KakaoDb;
  */
 public class NewJFrame extends javax.swing.JFrame {
     
-
-    
-    
+  
     public NewJFrame() {
         initComponents();
     }
@@ -37,19 +31,48 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
+        fileChooser = new javax.swing.JFileChooser();
+        ReadFile = new javax.swing.JTabbedPane();
+        Wczytaj = new javax.swing.JPanel();
+        WczytajCSV = new javax.swing.JButton();
+        Artykuly = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_artykulow = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        Kierunki = new javax.swing.JPanel();
+        ZamowieniaArtykulow = new javax.swing.JPanel();
+        ZamowieniaNaKierunki = new javax.swing.JPanel();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        WczytajCSV.setText("Wczytaj Plik CSV");
+        WczytajCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WczytajCSVActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout WczytajLayout = new javax.swing.GroupLayout(Wczytaj);
+        Wczytaj.setLayout(WczytajLayout);
+        WczytajLayout.setHorizontalGroup(
+            WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WczytajLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(WczytajCSV)
+                .addContainerGap(579, Short.MAX_VALUE))
+        );
+        WczytajLayout.setVerticalGroup(
+            WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(WczytajLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(WczytajCSV)
+                .addContainerGap(421, Short.MAX_VALUE))
+        );
+
+        ReadFile.addTab("Plik", Wczytaj);
 
         jButton1.setText("Zapamietaj ilości paletowe");
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -89,78 +112,78 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout ArtykulyLayout = new javax.swing.GroupLayout(Artykuly);
+        Artykuly.setLayout(ArtykulyLayout);
+        ArtykulyLayout.setHorizontalGroup(
+            ArtykulyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ArtykulyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        ArtykulyLayout.setVerticalGroup(
+            ArtykulyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ArtykulyLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Artykuły", jPanel3);
+        ReadFile.addTab("Artykuły", Artykuly);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout KierunkiLayout = new javax.swing.GroupLayout(Kierunki);
+        Kierunki.setLayout(KierunkiLayout);
+        KierunkiLayout.setHorizontalGroup(
+            KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 731, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+        KierunkiLayout.setVerticalGroup(
+            KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 504, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Kierunki", jPanel2);
+        ReadFile.addTab("Kierunki", Kierunki);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ZamowieniaArtykulowLayout = new javax.swing.GroupLayout(ZamowieniaArtykulow);
+        ZamowieniaArtykulow.setLayout(ZamowieniaArtykulowLayout);
+        ZamowieniaArtykulowLayout.setHorizontalGroup(
+            ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 731, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+        ZamowieniaArtykulowLayout.setVerticalGroup(
+            ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 504, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Zamówienia artykułów", jPanel4);
+        ReadFile.addTab("Zamówienia artykułów", ZamowieniaArtykulow);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout ZamowieniaNaKierunkiLayout = new javax.swing.GroupLayout(ZamowieniaNaKierunki);
+        ZamowieniaNaKierunki.setLayout(ZamowieniaNaKierunkiLayout);
+        ZamowieniaNaKierunkiLayout.setHorizontalGroup(
+            ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 731, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+        ZamowieniaNaKierunkiLayout.setVerticalGroup(
+            ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 504, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Zamówienia na kierunki", jPanel5);
+        ReadFile.addTab("Zamówienia na kierunki", ZamowieniaNaKierunki);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(ReadFile)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.getAccessibleContext().setAccessibleName("Artykuły");
-        jTabbedPane2.getAccessibleContext().setAccessibleDescription("");
+        ReadFile.getAccessibleContext().setAccessibleName("Artykuły");
+        ReadFile.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -193,17 +216,33 @@ public class NewJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void WczytajCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WczytajCSVActionPerformed
+        int returnValue = fileChooser.showOpenDialog(this);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+
+            File plik = fileChooser.getSelectedFile();
+            String filename = fileChooser.getName(plik);
+            ReadCSV.wczytajPlik(filename);
+
+        }
+
+
+    }//GEN-LAST:event_WczytajCSVActionPerformed
+
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Artykuly;
+    private javax.swing.JPanel Kierunki;
+    private javax.swing.JTabbedPane ReadFile;
     private javax.swing.JTable Tabela_artykulow;
+    private javax.swing.JPanel Wczytaj;
+    private javax.swing.JButton WczytajCSV;
+    private javax.swing.JPanel ZamowieniaArtykulow;
+    private javax.swing.JPanel ZamowieniaNaKierunki;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

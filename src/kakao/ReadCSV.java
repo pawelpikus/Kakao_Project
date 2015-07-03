@@ -5,6 +5,7 @@
 package kakao;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +21,13 @@ import static kakao.Sqlite.conn;
  */
 public class ReadCSV {
    
-    public static String csvFile = "data1.csv";
+    public static String csvFile=""; 
+    
+    public static void wczytajPlik (String filename){
+        csvFile = filename;
+    }
+        
+            
     
     public static void czysc_tabele (String nazwa_tabeli) throws SQLException, ClassNotFoundException
         {
@@ -31,20 +38,13 @@ public class ReadCSV {
         };
     
     
-    public void uzupelnij_tabele(int numer_kolumny_klucza, int numer_kolumny_wartosci, String nazwa_tabeli) throws SQLException, ClassNotFoundException{
+    public static void uzupelnij_tabele(int numer_kolumny_klucza, int numer_kolumny_wartosci, String nazwa_tabeli) throws SQLException, ClassNotFoundException{
         BufferedReader br = null;
         String line = "";
         String csvSplitBy = ",";
         // int i=0;
         //String kolumna = "Kraje";
         
-        if (conn != null)
-        {
-            System.out.println("Connected OK");
-        } else {
-            System.out.println("Connection failed");
-        }
-
         try 
         {    
             Map<String, String> maps = new HashMap<String, String>();
@@ -73,9 +73,10 @@ public class ReadCSV {
                         + entry.getKey() + ", " + entry.getValue() + "]");
             
                 // insert using prepared statement
-                PreparedStatement prep = conn.prepareStatement("insert into " + nazwa_tabeli + " values(?,?);");                
+                PreparedStatement prep = conn.prepareStatement("insert into " + nazwa_tabeli + " values(?,?,?);");                
                 prep.setString(1, entry.getKey());             
-                prep.setString(2, entry.getValue());                
+                prep.setString(2, entry.getValue()); 
+                prep.setString(3, null); 
                 prep.execute();
                 }
             

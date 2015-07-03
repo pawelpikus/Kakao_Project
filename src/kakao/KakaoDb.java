@@ -10,23 +10,12 @@ package kakao;
  * (does nothing but connecting to Coca.db) 
  */
 public class KakaoDb extends Sqlite {
-    
-    
 
-public KakaoDb (String sDriverKey, String sUrlKey) throws Exception
-{
-        
-    init(sDriverKey, sUrlKey);
-        
-    if (conn!= null)
-    {
-        System.out.println("Connected OK using " + sDriverKey+" to " +sUrlKey);
+    public KakaoDb(String sDriverKey, String sUrlKey) throws Exception {
+
+        init(sDriverKey, sUrlKey);
+
     }
-    else 
-    {
-        System.out.println("Connection failed");
-    }
-}
 }
     
 
