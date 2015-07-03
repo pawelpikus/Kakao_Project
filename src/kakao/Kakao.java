@@ -32,7 +32,7 @@ public class Kakao {
        
         
         //obj.czysc_tabele("Kraje");
-	//obj.uzupelnij_tabele(6, 6, "Kraje",plik);
+	//obj.uzupelnij_tabele(6, 6, "Kraje");
         //ReadCSV.czysc_tabele("Artykuly");
         //obj.uzupelnij_tabele(2, 3, "Artykuly");
         
