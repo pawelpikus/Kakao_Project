@@ -22,10 +22,6 @@ import static kakao.Sqlite.conn;
  */
 public class ReadFromDb {
     
-    
-    
-    public static String tablica[][];
-    
     public void pelny_odczyt (String nazwa_tabeli, int liczba_kolumn, String[] nazwy_kolumn) throws SQLException, ClassNotFoundException
         {
         if (conn != null)
@@ -45,7 +41,7 @@ public class ReadFromDb {
         
         System.out.println(w + " " + k);
         
-        tablica = new String[w][k];
+        Kakao.tablicaArtykulow = new String[w][k];
         int r = 0;
         int c = 0;
         
@@ -54,9 +50,9 @@ public class ReadFromDb {
         {
             for (int n = 0; n < nazwy_kolumn.length; n++)
             {
-                tablica[r][c] = rs.getString(nazwy_kolumn[n]);
-                if (tablica[r][c] == null)
-                {tablica[r][c] = "1";}
+                Kakao.tablicaArtykulow[r][c] = rs.getString(nazwy_kolumn[n]);
+                if (Kakao.tablicaArtykulow[r][c] == null)
+                {Kakao.tablicaArtykulow[r][c] = "1";}
                 c++;
             }
             r++;
@@ -65,17 +61,17 @@ public class ReadFromDb {
         rs.close();
         conn.close();
         
-        /*
+        
         // tak mozna wyświetlić otrzymaną tabelę
         
         for (int i=0; i < w; i++)
         {
             for (int j = 0; j < k; j++)
             {
-                System.out.print(tablica[i][j] + ", ");
+                System.out.print(Kakao.tablicaArtykulow[i][j] + ", ");
             }
             System.out.println();
         }
-        */
+        
         }
 }

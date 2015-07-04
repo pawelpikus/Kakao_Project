@@ -129,8 +129,8 @@ public class LoginPage extends javax.swing.JFrame {
                 //ładuje główny widok
                 NewJFrame ramka_glowna = new NewJFrame();
                 ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                ramka_glowna.setSize(400, 400);
-                ramka_glowna.pack();
+                ramka_glowna.setSize(800, 600);
+                //ramka_glowna.pack();
                 ramka_glowna.setVisible(true);
 
             } else {

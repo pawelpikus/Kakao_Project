@@ -5,10 +5,14 @@
 package kakao;
 
 import java.io.File;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import static kakao.Sqlite.conn;
 
 /**
  *
@@ -35,6 +39,8 @@ public class NewJFrame extends javax.swing.JFrame {
         ReadFile = new javax.swing.JTabbedPane();
         Wczytaj = new javax.swing.JPanel();
         WczytajCSV = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         Artykuly = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -55,21 +61,42 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Wczytaj artykuły");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Wczytaj kierunki");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout WczytajLayout = new javax.swing.GroupLayout(Wczytaj);
         Wczytaj.setLayout(WczytajLayout);
         WczytajLayout.setHorizontalGroup(
             WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WczytajLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(WczytajCSV)
-                .addContainerGap(579, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(WczytajCSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(578, Short.MAX_VALUE))
         );
         WczytajLayout.setVerticalGroup(
             WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WczytajLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(31, 31, 31)
                 .addComponent(WczytajCSV)
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         ReadFile.addTab("Plik", Wczytaj);
@@ -85,7 +112,7 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         Tabela_artykulow.setModel(new javax.swing.table.DefaultTableModel(
-            ReadFromDb.tablica,
+            Kakao.tablicaArtykulow,
             new String [] {
                 "Numer", "Nazwa", "Ilość paletowa"
             }
@@ -105,9 +132,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Tabela_artykulow.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         Tabela_artykulow.setFillsViewportHeight(true);
         Tabela_artykulow.setGridColor(new java.awt.Color(51, 51, 0));
-        Tabela_artykulow.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(Tabela_artykulow);
 
         jScrollPane2.setViewportView(jScrollPane1);
@@ -140,7 +167,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         KierunkiLayout.setVerticalGroup(
             KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 272, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Kierunki", Kierunki);
@@ -153,7 +180,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         ZamowieniaArtykulowLayout.setVerticalGroup(
             ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 272, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia artykułów", ZamowieniaArtykulow);
@@ -166,7 +193,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         ZamowieniaNaKierunkiLayout.setVerticalGroup(
             ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 272, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia na kierunki", ZamowieniaNaKierunki);
@@ -189,30 +216,37 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Na razie nie chce poprawnie działać:
         /*
         try {
-            ReadCSV.czysc_tabele("Artykuly");
-        }
-        catch (SQLException | ClassNotFoundException ex)
-        {
+            
+            // Na razie nie chce poprawnie działać:
+            
+            Statement stat = conn.createStatement();
+            
+            int liczba_wierszy;
+            ResultSet rs1 = stat.executeQuery("select count(numer_artykulu) as total from Artykuly");
+            liczba_wierszy = rs1.getInt("total");
+            rs1.close();
+                     
+            
+            ReadCSV obj = new ReadCSV();
+            obj.czysc_tabele("Artykuly");
+            System.out.println("Skasowalem dane z artykułów.");
+            
+            for(int i = 0; i<liczba_wierszy; i++){
+                PreparedStatement prep = conn.prepareStatement("insert into Artykuly values(?,?,?);");
+                prep.setString(1, Kakao.tablicaArtykulow[i][0]);
+                prep.setString(2, Kakao.tablicaArtykulow[i][1]);
+                prep.setString(3, Kakao.tablicaArtykulow[i][2]);    
+                prep.execute();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //100 oczywiście do poprawy
-        for (int i = 0; i < 100; i++)
-        {
-            try {
-                PreparedStatement prep = conn.prepareStatement("insert into Artykuly values(?,?,?);");
-                prep.setString(1, ReadFromDb.tablica[i][0]);
-                prep.setString(2, ReadFromDb.tablica[i][1]);
-                prep.setString(3, ReadFromDb.tablica[i][2]);
-                prep.execute();
-            } catch (SQLException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        */
+        
+          */  
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -229,6 +263,48 @@ public class NewJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_WczytajCSVActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // przycisk wczytaj artykuły wykonuje
+            ReadCSV obj = new ReadCSV();
+            ReadCSV.czysc_tabele("Artykuly");
+            obj.uzupelnij_tabele(2, 3, "Artykuly");
+            ReadFromDb odczytArtykulow = new ReadFromDb();
+            String[] nazwy_kolumn_artykuly = {"numer_artykulu", "nazwa_artykulu", "ilosc_paletowa"};
+            odczytArtykulow.pelny_odczyt("Artykuly", 3, nazwy_kolumn_artykuly);
+            System.out.println("Wgrano dane do artykułów.");
+        } catch (SQLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Tabela_artykulow.setModel(new javax.swing.table.DefaultTableModel(
+            Kakao.tablicaArtykulow,
+            new String [] {
+                "Numer", "Nazwa", "Ilość paletowa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Short.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Artykuly;
@@ -241,6 +317,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ZamowieniaNaKierunki;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
