@@ -23,6 +23,13 @@ public class NewJFrame extends javax.swing.JFrame {
   
     public NewJFrame() {
         initComponents();
+        
+    }
+    public NewJFrame (String i, String n, String s)
+    {
+        initComponents();
+        user.setText(i+" "+n+", "+s);
+        
     }
 
     /**
@@ -49,10 +56,18 @@ public class NewJFrame extends javax.swing.JFrame {
         Kierunki = new javax.swing.JPanel();
         ZamowieniaArtykulow = new javax.swing.JPanel();
         ZamowieniaNaKierunki = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        wyloguj = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         WczytajCSV.setText("Wczytaj Plik CSV");
         WczytajCSV.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +100,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(WczytajCSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(578, Short.MAX_VALUE))
+                .addContainerGap(655, Short.MAX_VALUE))
         );
         WczytajLayout.setVerticalGroup(
             WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +111,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         ReadFile.addTab("Plik", Wczytaj);
@@ -146,7 +161,7 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(ArtykulyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
         );
         ArtykulyLayout.setVerticalGroup(
             ArtykulyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +178,11 @@ public class NewJFrame extends javax.swing.JFrame {
         Kierunki.setLayout(KierunkiLayout);
         KierunkiLayout.setHorizontalGroup(
             KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 731, Short.MAX_VALUE)
+            .addGap(0, 808, Short.MAX_VALUE)
         );
         KierunkiLayout.setVerticalGroup(
             KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Kierunki", Kierunki);
@@ -176,11 +191,11 @@ public class NewJFrame extends javax.swing.JFrame {
         ZamowieniaArtykulow.setLayout(ZamowieniaArtykulowLayout);
         ZamowieniaArtykulowLayout.setHorizontalGroup(
             ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 731, Short.MAX_VALUE)
+            .addGap(0, 808, Short.MAX_VALUE)
         );
         ZamowieniaArtykulowLayout.setVerticalGroup(
             ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia artykułów", ZamowieniaArtykulow);
@@ -189,24 +204,52 @@ public class NewJFrame extends javax.swing.JFrame {
         ZamowieniaNaKierunki.setLayout(ZamowieniaNaKierunkiLayout);
         ZamowieniaNaKierunkiLayout.setHorizontalGroup(
             ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 731, Short.MAX_VALUE)
+            .addGap(0, 808, Short.MAX_VALUE)
         );
         ZamowieniaNaKierunkiLayout.setVerticalGroup(
             ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 272, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia na kierunki", ZamowieniaNaKierunki);
+
+        jLabel1.setText("Zalogowany jako:");
+
+        user.setText("user");
+
+        wyloguj.setText("Wyloguj");
+        wyloguj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wylogujMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(wyloguj)
+                .addContainerGap())
             .addComponent(ReadFile)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(user))
+                    .addComponent(wyloguj))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         ReadFile.getAccessibleContext().setAccessibleName("Artykuły");
@@ -305,6 +348,19 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void wylogujMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wylogujMouseClicked
+        try {
+            Kakao.initLoginPage();
+        } catch (Exception ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setVisible(false);
+    }//GEN-LAST:event_wylogujMouseClicked
+
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Artykuly;
@@ -319,8 +375,11 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel user;
+    private javax.swing.JButton wyloguj;
     // End of variables declaration//GEN-END:variables
 }

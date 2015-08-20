@@ -18,20 +18,21 @@ public class Kakao {
      */
     public static String tablicaArtykulow[][];
     
-    public static void main(String[] args) throws Exception {
-        
-        
-  
-        //formatka z logowaniem
+    public static void initLoginPage() throws Exception{
         LoginPage loginPage = new LoginPage();
         loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginPage.setSize(400,400);
         loginPage.pack();
         loginPage.setVisible(true);
-        
-        String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
-        KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
+                
+        KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", "jdbc:sqlite:Cocoa_v2.db");
         kakaoDb.getConnection();
+        }
+    
+    public static void main(String[] args) throws Exception {
+        
+        initLoginPage();
+  
         
         /*
         ReadCSV obj = new ReadCSV();

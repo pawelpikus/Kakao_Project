@@ -15,14 +15,25 @@ import static kakao.Sqlite.conn;
  * @author Lusiotron2015
  */
 public class LoginPage extends javax.swing.JFrame {
-
+    private String _imie;
+    private String _nazwisko;
+    private String _stanowisko;
+    
+    public String getImie() { return _imie;}
+    public void setImie (String imie){_imie = imie;}
+    public String getNazwisko(){return _nazwisko;}
+    public void setNazwisko(String nazwisko){_nazwisko=nazwisko;}
+    public String getStanowisko(){return _stanowisko;}
+    public void setStanowisko(String stanowisko){_stanowisko = stanowisko;}
+    
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,16 +88,17 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LogIn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txtField_username, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                         .addGap(144, 144, 144))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(passField_password, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(LogIn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,15 +135,30 @@ public class LoginPage extends javax.swing.JFrame {
             String user = txtField_username.getText();
             char[] pass = passField_password.getPassword();
             String pwd = String.copyValueOf(pass);
+            
             if (validate_login(user, pwd)) {
                 JOptionPane.showMessageDialog(null, "Logowanie udane!");
                 setVisible(false);
                 //ładuje główny widok
-                NewJFrame ramka_glowna = new NewJFrame();
+                if ("admin".equals(user)&&"admin".equals(pwd))
+                {
+                    AdminPage admin = new AdminPage(getImie(), getNazwisko(),getStanowisko());
+                    admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    admin.setSize(800, 600);
+                    admin.setVisible(true);
+                    
+                } 
+                else if (!"admin".equals(user)&&!"admin".equals(pwd))
+                {
+            
+                NewJFrame ramka_glowna = new NewJFrame(getImie(), getNazwisko(),getStanowisko());
                 ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ramka_glowna.setSize(800, 600);
-                //ramka_glowna.pack();
+                ramka_glowna.pack();
                 ramka_glowna.setVisible(true);
+                    
+                
+                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Niepoprawna nazwa użytkownika lub hasło!");
@@ -142,15 +169,18 @@ public class LoginPage extends javax.swing.JFrame {
 
     private boolean validate_login(String username, String password) {
         try {
-            String sUrlString = "jdbc:sqlite:Cocoa_v2.db";
-            KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", sUrlString);
+            KakaoDb kakaoDb = new KakaoDb("org.sqlite.JDBC", "jdbc:sqlite:Cocoa_v2.db");
             kakaoDb.getConnection();
             PreparedStatement pst = conn.prepareStatement("SELECT * from Pracownicy where username=? and password=?");
 
             pst.setString(1, username);
             pst.setString(2, password);
+            
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
+                setImie(rs.getString("imie"));
+                setNazwisko(rs.getString("nazwisko"));                       
+                setStanowisko(rs.getString("stanowisko"));
                 return true;
             } else {
                 return false;

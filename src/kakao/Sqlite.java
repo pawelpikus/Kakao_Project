@@ -78,8 +78,8 @@ abstract class Sqlite {
     // since they will generate spurious SQLExceptions when they are encountered during the iteration....
     
     public void executeStmt (String[] instructionSet) throws SQLException{
-        for (int i=0; i<instructionSet.length; i++){
-            executeStmt(instructionSet[i]);
+        for (String instructionSet1 : instructionSet) {
+            executeStmt(instructionSet1);
         }
         
     }
