@@ -140,15 +140,16 @@ public class LoginPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Logowanie udane!");
                 setVisible(false);
                 //ładuje główny widok
-                if ("admin".equals(user)&&"admin".equals(pwd))
+                if ("admin".equals(user))
                 {
                     AdminPage admin = new AdminPage(getImie(), getNazwisko(),getStanowisko());
                     admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     admin.setSize(800, 600);
                     admin.setVisible(true);
+                    admin.pack();
                     
                 } 
-                else if (!"admin".equals(user)&&!"admin".equals(pwd))
+                else if (!"admin".equals(user))
                 {
             
                 NewJFrame ramka_glowna = new NewJFrame(getImie(), getNazwisko(),getStanowisko());
