@@ -48,6 +48,8 @@ public class NewJFrame extends javax.swing.JFrame {
         WczytajCSV = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Artykuly = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -90,6 +92,8 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/drink1.jpg"))); // NOI18N
+
         javax.swing.GroupLayout WczytajLayout = new javax.swing.GroupLayout(Wczytaj);
         Wczytaj.setLayout(WczytajLayout);
         WczytajLayout.setHorizontalGroup(
@@ -100,18 +104,32 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(WczytajCSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(655, Short.MAX_VALUE))
+                .addGroup(WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(WczytajLayout.createSequentialGroup()
+                        .addGap(458, 458, 458)
+                        .addComponent(jLabel2)
+                        .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WczytajLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(26, 26, 26))))
         );
         WczytajLayout.setVerticalGroup(
             WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(WczytajLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(WczytajCSV)
+                .addGroup(WczytajLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(WczytajCSV)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WczytajLayout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         ReadFile.addTab("Plik", Wczytaj);
@@ -161,7 +179,7 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(ArtykulyLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
         );
         ArtykulyLayout.setVerticalGroup(
             ArtykulyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +196,11 @@ public class NewJFrame extends javax.swing.JFrame {
         Kierunki.setLayout(KierunkiLayout);
         KierunkiLayout.setHorizontalGroup(
             KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         KierunkiLayout.setVerticalGroup(
             KierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Kierunki", Kierunki);
@@ -191,11 +209,11 @@ public class NewJFrame extends javax.swing.JFrame {
         ZamowieniaArtykulow.setLayout(ZamowieniaArtykulowLayout);
         ZamowieniaArtykulowLayout.setHorizontalGroup(
             ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         ZamowieniaArtykulowLayout.setVerticalGroup(
             ZamowieniaArtykulowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia artykułów", ZamowieniaArtykulow);
@@ -204,11 +222,11 @@ public class NewJFrame extends javax.swing.JFrame {
         ZamowieniaNaKierunki.setLayout(ZamowieniaNaKierunkiLayout);
         ZamowieniaNaKierunkiLayout.setHorizontalGroup(
             ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         ZamowieniaNaKierunkiLayout.setVerticalGroup(
             ZamowieniaNaKierunkiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
+            .addGap(0, 369, Short.MAX_VALUE)
         );
 
         ReadFile.addTab("Zamówienia na kierunki", ZamowieniaNaKierunki);
@@ -236,7 +254,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(wyloguj)
                 .addContainerGap())
-            .addComponent(ReadFile)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,14 +268,15 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(user))
                     .addComponent(wyloguj))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(ReadFile, javax.swing.GroupLayout.PREFERRED_SIZE, 397, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         ReadFile.getAccessibleContext().setAccessibleName("Artykuły");
         ReadFile.getAccessibleContext().setAccessibleDescription("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -376,6 +397,8 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;

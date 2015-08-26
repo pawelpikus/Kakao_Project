@@ -85,11 +85,15 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel1.setText("Zalogowany jako:");
 
+        user.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         user.setText("user");
 
+        wyloguj.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         wyloguj.setText("Wyloguj");
         wyloguj.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,18 +101,29 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
 
+        jTabbedPane1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 287));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel2.setText("Wprowadź dane nowego użytkownika: ");
 
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel3.setText("Imię: ");
 
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel4.setText("Nazwisko:");
 
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel5.setText("Stanowisko");
 
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel6.setText("Login: ");
 
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel7.setText("Hasło:");
 
+        btn_wprowadz.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btn_wprowadz.setText("Wprowadź Dane");
         btn_wprowadz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,23 +143,23 @@ public class AdminPage extends javax.swing.JFrame {
                             .addComponent(btn_wprowadz)
                             .addComponent(wynik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtfield_haslo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(txtfield_imie, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfield_nazwisko, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfield_stanowisko, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfield_login))
-                        .addGap(225, 225, 225)))
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel7))
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtfield_imie, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                                    .addComponent(txtfield_nazwisko)
+                                    .addComponent(txtfield_stanowisko)
+                                    .addComponent(txtfield_login)
+                                    .addComponent(txtfield_haslo))))
+                        .addGap(0, 184, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,23 +191,36 @@ public class AdminPage extends javax.swing.JFrame {
                 .addComponent(btn_wprowadz)
                 .addGap(18, 18, 18)
                 .addComponent(wynik, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 82, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Nowy Użytkownik", jPanel1);
 
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel8.setText("Login:");
 
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel9.setText("Wpisz aktualne dane użytkownika:");
 
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel10.setText("Imię:");
 
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel11.setText("Nazwisko");
 
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel12.setText("Stanowisko");
 
+        txtfield_stanowiskoUpd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfield_stanowiskoUpdActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel13.setText("Hasło: ");
 
+        btn_uaktualnij.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         btn_uaktualnij.setText("Uaktualnij");
         btn_uaktualnij.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,8 +239,8 @@ public class AdminPage extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addGroup(JpanelLayout.createSequentialGroup()
                             .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                            .addComponent(txtfield_loginUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                            .addComponent(txtfield_loginUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(JpanelLayout.createSequentialGroup()
                             .addGroup(JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel10)
@@ -221,13 +249,13 @@ public class AdminPage extends javax.swing.JFrame {
                                 .addComponent(jLabel13))
                             .addGap(55, 55, 55)
                             .addGroup(JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtfield_imieUpd, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                                 .addComponent(txtField_nazwiskoUpd)
                                 .addComponent(txtfield_stanowiskoUpd)
-                                .addComponent(txtfield_hasloUpd, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                                .addComponent(txtfield_imieUpd, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(txtfield_hasloUpd)))
                         .addComponent(wynikUpd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btn_uaktualnij))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         JpanelLayout.setVerticalGroup(
             JpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,13 +286,15 @@ public class AdminPage extends javax.swing.JFrame {
                 .addComponent(btn_uaktualnij)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(wynikUpd, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Uaktualnij Dane", Jpanel);
 
+        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel14.setText("Login: ");
 
+        btn_delete.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btn_delete.setText("Usuń");
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +325,7 @@ public class AdminPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jlist_pracownicy);
 
+        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel15.setText("Lista użytkowników systemu:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -303,14 +334,14 @@ public class AdminPage extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
-                        .addGap(66, 66, 66)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtfield_loginDel, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_delete)
-                    .addComponent(wynikDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(wynikDel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
@@ -330,8 +361,9 @@ public class AdminPage extends javax.swing.JFrame {
                         .addComponent(btn_delete)
                         .addGap(18, 18, 18)
                         .addComponent(wynikDel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(239, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Usuń Użytkownika", jPanel3);
@@ -357,7 +389,7 @@ public class AdminPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(wyloguj)
                 .addContainerGap())
@@ -377,6 +409,7 @@ public class AdminPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -476,6 +509,10 @@ public class AdminPage extends javax.swing.JFrame {
         
             txtfield_loginDel.setText(jlist_pracownicy.getSelectedValue().toString()) ;
     }//GEN-LAST:event_jlist_pracownicyValueChanged
+
+    private void txtfield_stanowiskoUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfield_stanowiskoUpdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfield_stanowiskoUpdActionPerformed
 
     /**
      * @param args the command line arguments
