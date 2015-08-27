@@ -13,6 +13,7 @@ import static java.util.Collections.list;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import static kakao.Sqlite.conn;
 
 /**
@@ -32,6 +33,7 @@ public class AdminPage extends javax.swing.JFrame {
         initComponents();
         user.setText(i + " " + n + ", " + s);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,6 +85,7 @@ public class AdminPage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jlist_pracownicy = new javax.swing.JList();
         jLabel15 = new javax.swing.JLabel();
+        updateList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -328,11 +331,19 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel15.setText("Lista użytkowników systemu:");
 
+        updateList.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        updateList.setText("Uaktualnij Listę");
+        updateList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -343,6 +354,7 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(wynikDel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateList)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addContainerGap())
@@ -355,14 +367,16 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(txtfield_loginDel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateList)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btn_delete)
                         .addGap(18, 18, 18)
                         .addComponent(wynikDel, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -378,7 +392,9 @@ public class AdminPage extends javax.swing.JFrame {
         );
         JPanelLayout.setVerticalGroup(
             JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(JPanelLayout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,22 +448,36 @@ public class AdminPage extends javax.swing.JFrame {
             int lastId = 0;
             while (result.next()) {
                 int id = result.getInt(1);
-                lastId = id;
+                if (lastId<id) lastId = id;
             }
 
             //dodawanie nowego użytkownika z nr id_pracownicy wiekszym o 1 od poprzedniego (lastid+1)
-            String sql = "INSERT INTO Pracownicy VALUES (?,?,?,?,?,?)";
-            PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setInt(1, lastId + 1);
-            stm.setString(2, txtfield_imie.getText());
-            stm.setString(3, txtfield_nazwisko.getText());
-            stm.setString(4, txtfield_stanowisko.getText());
-            stm.setString(5, txtfield_login.getText());
-            stm.setString(6, txtfield_haslo.getText());
+            if (txtfield_imie.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_nazwisko.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_login.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_haslo.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_stanowisko.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            }
+            else {
+                String sql = "INSERT INTO Pracownicy VALUES (?,?,?,?,?,?,?)";
+                PreparedStatement stm = conn.prepareStatement(sql);
+                stm.setInt(1, lastId + 1);
+                stm.setString(2, txtfield_imie.getText());
+                stm.setString(3, txtfield_nazwisko.getText());
+                stm.setString(4, txtfield_stanowisko.getText());
+                stm.setString(5, txtfield_login.getText());
+                stm.setString(6, txtfield_haslo.getText());
+                stm.setBoolean(7, true);
 
-            int rowsInserted = stm.executeUpdate();
-            if (rowsInserted > 0) {
-                wynik.setText("Dodano nowego użytkownika!");
+                int rowsInserted = stm.executeUpdate();
+                if (rowsInserted > 0) {
+                    wynik.setText("Dodano nowego użytkownika!");
+                }
             }
         } catch (Exception ex) {
             wynik.setText("Podany login juz istnieje. Podaj inny login!");
@@ -457,23 +487,33 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void btn_uaktualnijActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_uaktualnijActionPerformed
         try {
-            String sql = "UPDATE Pracownicy SET imie=?, nazwisko=?, stanowisko=?, password=? WHERE username=?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, txtfield_imieUpd.getText());
-            statement.setString(2, txtField_nazwiskoUpd.getText());
-            statement.setString(3, txtfield_stanowiskoUpd.getText());
-            statement.setString(4, txtfield_hasloUpd.getText());
-            statement.setString(5, txtfield_loginUpd.getText());
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated>0)
-            {
-                wynikUpd.setText("Dane użytkownika "+txtfield_loginUpd.getText()+" zostały uaktualnione.");
+            if (txtfield_imieUpd.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtField_nazwiskoUpd.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_loginUpd.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_hasloUpd.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else if (txtfield_stanowiskoUpd.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Uzupełnij wszystkie pola!");
+            } else {
+                String sql = "UPDATE Pracownicy SET imie=?, nazwisko=?, stanowisko=?, password=? WHERE username=?";
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, txtfield_imieUpd.getText());
+                statement.setString(2, txtField_nazwiskoUpd.getText());
+                statement.setString(3, txtfield_stanowiskoUpd.getText());
+                statement.setString(4, txtfield_hasloUpd.getText());
+                statement.setString(5, txtfield_loginUpd.getText());
+                int rowsUpdated = statement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    wynikUpd.setText("Dane użytkownika " + txtfield_loginUpd.getText() + " zostały uaktualnione.");
+                } else {
+                    wynikUpd.setText("Podany login nie istnieje.");
+
+                }
             }
-            else{
-                wynikUpd.setText("Podany login nie istnieje.");
-                
-            }
-                
+          
             
         } catch (Exception e) {
             wynikUpd.setText("Podany login nie istnieje.");
@@ -484,24 +524,30 @@ public class AdminPage extends javax.swing.JFrame {
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         try {
             String sql = "DELETE FROM Pracownicy WHERE username=?";
+
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, txtfield_loginDel.getText());
             if ("admin".equals(txtfield_loginDel.getText())) {
                 wynikDel.setText("Go to hell!");
                 return;
+            } else if ("".equals(txtfield_loginDel.getText())) {
+                wynikDel.setText("Uzupełnij pole login!");
             } else {
                 int rowsDeleted = statement.executeUpdate();
                 if (rowsDeleted > 0) {
                     wynikDel.setText("Użytkownik usunięty z bazy danych.");
+
                 } else {
                     wynikDel.setText("Podany login nie istnieje.");
                 }
-            }
+
+            }            
+
         } catch (Exception e) {
-            wynikDel.setText("Podany login nie istnieje.");
+            //wynikDel.setText("Podany login nie istnieje.");
             e.printStackTrace();
         }
-        
+
         
     }//GEN-LAST:event_btn_deleteActionPerformed
 
@@ -513,6 +559,23 @@ public class AdminPage extends javax.swing.JFrame {
     private void txtfield_stanowiskoUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfield_stanowiskoUpdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfield_stanowiskoUpdActionPerformed
+
+    private void updateListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateListActionPerformed
+        try{
+        DefaultListModel model2 = new DefaultListModel();
+            String sql2 = "Select username FROM Pracownicy";
+            Statement stm = conn.createStatement();
+            ResultSet res = stm.executeQuery(sql2);
+            while (res.next()) {
+                String username = res.getString("username");
+                model2.addElement(username);
+            }
+            jlist_pracownicy.setModel(model2);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_updateListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,6 +618,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JTextField txtfield_nazwisko;
     private javax.swing.JTextField txtfield_stanowisko;
     private javax.swing.JTextField txtfield_stanowiskoUpd;
+    private javax.swing.JButton updateList;
     private javax.swing.JLabel user;
     private javax.swing.JButton wyloguj;
     private javax.swing.JLabel wynik;
