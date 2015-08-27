@@ -18,6 +18,7 @@ public class LoginPage extends javax.swing.JFrame {
     private String _imie;
     private String _nazwisko;
     private String _stanowisko;
+    private int _newPass;
     
     public String getImie() { return _imie;}
     public void setImie (String imie){_imie = imie;}
@@ -25,6 +26,8 @@ public class LoginPage extends javax.swing.JFrame {
     public void setNazwisko(String nazwisko){_nazwisko=nazwisko;}
     public String getStanowisko(){return _stanowisko;}
     public void setStanowisko(String stanowisko){_stanowisko = stanowisko;}
+    public int getNewPass() {return _newPass;}
+    public void setNewPass (int newPass) {_newPass = newPass;}
     
     /**
      * Creates new form LoginPage
@@ -154,35 +157,43 @@ public class LoginPage extends javax.swing.JFrame {
             char[] pass = passField_password.getPassword();
             String pwd = String.copyValueOf(pass);
             
+
             if (validate_login(user, pwd)) {
-                JOptionPane.showMessageDialog(null, "Logowanie udane!");
+                //JOptionPane.showMessageDialog(null, "Logowanie udane!");
+                System.out.print(getStanowisko()+" "+getNewPass()) ;
                 setVisible(false);
                 //ładuje główny widok
-                if ("admin".equals(user))
-                {
-                    AdminPage admin = new AdminPage(getImie(), getNazwisko(),getStanowisko());
+                if ("admin".equals(user)&&getNewPass()==0) {
+                    AdminPage admin = new AdminPage(getImie(), getNazwisko(), getStanowisko());
                     admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     admin.setSize(800, 600);
                     admin.setVisible(true);
                     admin.pack();
-                    
-                } 
-                else if (!"admin".equals(user))
-                {
-            
-                NewJFrame ramka_glowna = new NewJFrame(getImie(), getNazwisko(),getStanowisko());
-                ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                ramka_glowna.setSize(800, 600);
-                ramka_glowna.pack();
-                ramka_glowna.setVisible(true);
-                    
-                
+
+                }
+                else if (getNewPass()==1){
+
+                    PassChangePage passChange = new PassChangePage();
+                    passChange.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    passChange.setSize(800, 600);
+                    passChange.setVisible(true);
+                    passChange.pack();
+                }
+                else {
+
+                    NewJFrame ramka_glowna = new NewJFrame(getImie(), getNazwisko(), getStanowisko());
+                    ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ramka_glowna.setSize(800, 600);
+                    ramka_glowna.pack();
+                    ramka_glowna.setVisible(true);
                 }
 
-            } else {
+            
+
+        }else {
                 JOptionPane.showMessageDialog(null, "Niepoprawna nazwa użytkownika lub hasło!");
             }
-        }
+    }
 
     }//GEN-LAST:event_LogInActionPerformed
 
@@ -195,11 +206,13 @@ public class LoginPage extends javax.swing.JFrame {
             pst.setString(1, username);
             pst.setString(2, password);
             
+            
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 setImie(rs.getString("imie"));
-                setNazwisko(rs.getString("nazwisko"));                       
+                setNazwisko(rs.getString("nazwisko"));  
                 setStanowisko(rs.getString("stanowisko"));
+                setNewPass(rs.getInt("newPass"));
                 return true;
             } else {
                 return false;
