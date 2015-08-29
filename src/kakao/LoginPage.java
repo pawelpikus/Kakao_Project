@@ -159,30 +159,27 @@ public class LoginPage extends javax.swing.JFrame {
             String user = txtField_username.getText();
             char[] pass = passField_password.getPassword();
             String pwd = String.copyValueOf(pass);
-            
 
             if (validate_login(user, pwd)) {
                 //JOptionPane.showMessageDialog(null, "Logowanie udane!");
-                System.out.print(getStanowisko()+" "+getNewPass()) ;
+                System.out.print(getStanowisko() + " " + getNewPass());
                 setVisible(false);
                 //ładuje główny widok
-                if ("admin".equals(user)&&getNewPass()==0) {
+                if ("admin".equals(user) && getNewPass() == 0) {
                     AdminPage admin = new AdminPage(getImie(), getNazwisko(), getStanowisko());
                     admin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     admin.setSize(800, 600);
                     admin.setVisible(true);
                     admin.pack();
 
-                }
-                else if (getNewPass()==1){
+                } else if (getNewPass() == 1) {
 
                     PassChangePage passChange = new PassChangePage(getUser());
                     passChange.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     passChange.setSize(800, 600);
                     passChange.setVisible(true);
                     passChange.pack();
-                }
-                else {
+                } else {
 
                     NewJFrame ramka_glowna = new NewJFrame(getImie(), getNazwisko(), getStanowisko());
                     ramka_glowna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,12 +188,10 @@ public class LoginPage extends javax.swing.JFrame {
                     ramka_glowna.setVisible(true);
                 }
 
-            
-
-        }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Niepoprawna nazwa użytkownika lub hasło!");
             }
-    }
+        }
 
     }//GEN-LAST:event_LogInActionPerformed
 
