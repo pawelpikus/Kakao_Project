@@ -5,7 +5,6 @@
 package kakao;
 
 import java.sql.PreparedStatement;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static kakao.Sqlite.conn;
 

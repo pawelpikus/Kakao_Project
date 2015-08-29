@@ -208,7 +208,7 @@ public class LoginPage extends javax.swing.JFrame {
 
             pst.setString(1, username);
             pst.setString(2, password);
-            
+            setUser(username);
             
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
@@ -216,7 +216,7 @@ public class LoginPage extends javax.swing.JFrame {
                 setNazwisko(rs.getString("nazwisko"));  
                 setStanowisko(rs.getString("stanowisko"));
                 setNewPass(rs.getInt("newPass"));
-                setUser(username);
+                
                 return true;
             } else {
                 return false;
