@@ -28,6 +28,7 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame (String i, String n, String s)
     {
         initComponents();
+        //zalogowany jako
         user.setText(i+" "+n+", "+s);
         
     }

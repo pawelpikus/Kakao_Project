@@ -18,6 +18,7 @@ public class LoginPage extends javax.swing.JFrame {
     private String _imie;
     private String _nazwisko;
     private String _stanowisko;
+    private String _username;
     private int _newPass;
     
     public String getImie() { return _imie;}
@@ -28,6 +29,8 @@ public class LoginPage extends javax.swing.JFrame {
     public void setStanowisko(String stanowisko){_stanowisko = stanowisko;}
     public int getNewPass() {return _newPass;}
     public void setNewPass (int newPass) {_newPass = newPass;}
+    public String getUser() {return _username;}
+    public void setUser(String username) { _username = username;}
     
     /**
      * Creates new form LoginPage
@@ -173,7 +176,7 @@ public class LoginPage extends javax.swing.JFrame {
                 }
                 else if (getNewPass()==1){
 
-                    PassChangePage passChange = new PassChangePage();
+                    PassChangePage passChange = new PassChangePage(getUser());
                     passChange.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     passChange.setSize(800, 600);
                     passChange.setVisible(true);
@@ -213,6 +216,7 @@ public class LoginPage extends javax.swing.JFrame {
                 setNazwisko(rs.getString("nazwisko"));  
                 setStanowisko(rs.getString("stanowisko"));
                 setNewPass(rs.getInt("newPass"));
+                setUser(username);
                 return true;
             } else {
                 return false;
